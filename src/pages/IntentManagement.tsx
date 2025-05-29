@@ -84,6 +84,9 @@ export default function IntentManager() {
   const onSelectIntent = (id: number, name: string) => {
     setIntentID(id)
     setIntentName(name)
+
+    console.log(intentID, intentName);
+    
   }
 
   return (
