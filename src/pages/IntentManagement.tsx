@@ -89,10 +89,14 @@ export default function IntentManager() {
     
   }
 
+  const onCloseExampleModal = () => {
+    setIntentID(null)
+    setIntentName(null)
+  }
+
   return (
-    <div>
-        <Container maxWidth="xl" sx={{ mt: 8 }}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+    <Container maxWidth="md" sx={{ mt: 8 }}>
+      <Box display="flex" justifyContent="space-around" alignItems="center" mb={3}>
         <Typography variant="h5" fontWeight="bold">
           Danh sách Intents
         </Typography>
@@ -101,7 +105,7 @@ export default function IntentManager() {
         </Button>
       </Box>
 
-      <TableContainer component={Paper} elevation={5}>
+      <TableContainer component={Paper} elevation={5} sx={{maxWidth: 1000, mx: "auto"}}>
         <Table size='medium'>
           <TableHead>
             <TableRow>
@@ -136,21 +140,22 @@ export default function IntentManager() {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Modal 
+          open={open} 
+          handleClose={handleClose} 
+          handleSubmit={handleSubmit} 
+          form={form} 
+          handleChangeForm={handleChangeForm}
+          id={editingId}
+      />
+
+      <ExampleModal
+          intent_id={intentID}
+          intent_name={intentName}
+          handleClose={onCloseExampleModal}
+      />
+
     </Container>
-
-    <Modal 
-        open={open} 
-        handleClose={handleClose} 
-        handleSubmit={handleSubmit} 
-        form={form} 
-        handleChangeForm={handleChangeForm}
-        id={editingId}
-    />
-
-    <ExampleModal
-        intent_id={intentID}
-        intent_name={intentName}
-    />
-    </div>
   );
 }
