@@ -84,9 +84,6 @@ export default function IntentManager() {
   const onSelectIntent = (id: number, name: string) => {
     setIntentID(id)
     setIntentName(name)
-
-    console.log(intentID, intentName);
-    
   }
 
   const onCloseExampleModal = () => {
@@ -96,13 +93,19 @@ export default function IntentManager() {
 
   return (
     <Container maxWidth="md" sx={{ mt: 8 }}>
-      <Box display="flex" justifyContent="space-around" alignItems="center" mb={3}>
-        <Typography variant="h5" fontWeight="bold">
+      <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+        <Typography variant="h6" fontWeight="bold">
           Danh sách Intents
         </Typography>
-        <Button variant="contained" color="primary" onClick={handleOpen}>
-          Thêm mới
-        </Button>
+        <Box display='flex' justifyContent='space-between' gap={1}>
+          <Button variant="contained" color="primary" onClick={handleOpen}>
+            Thêm mới
+          </Button>
+
+          <Button variant="contained" color="primary">
+            Xuất Intent
+          </Button>
+        </Box>
       </Box>
 
       <TableContainer component={Paper} elevation={5} sx={{maxWidth: 1000, mx: "auto"}}>

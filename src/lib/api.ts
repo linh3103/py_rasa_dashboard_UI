@@ -24,7 +24,6 @@ async function request<T>(
     ...options,
     headers: buildHeaders(options.headers),
   });
-  console.log(`${BASE_URL}${path}`);
   
   if (!res.ok) {
     const errorText = await res.text();
