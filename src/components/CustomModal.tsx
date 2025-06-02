@@ -28,30 +28,30 @@ export default function NestedModal({open, handleClose, handleSubmit, form, hand
         aria-describedby="modal-modal-description"
       >
 
-    <>
-        <Box
-            component="form"
-            sx={style}
-            noValidate
-            autoComplete="off"
-            action={handleSubmit}
-        >
+      <>
+          <Box
+              component="form"
+              sx={style}
+              noValidate
+              autoComplete="off"
+              action={handleSubmit}
+          >
 
-            <Typography variant='h6' component="h6"color='black'>
-                {id ? "Cập nhật intent" : "Thêm 01 intent"}
-            </Typography>
+              <Typography variant='h6' component="h6"color='black'>
+                  {id ? "Cập nhật intent" : "Thêm 01 intent"}
+              </Typography>
 
-            <TextField id="standard-basic" label="Intent" variant="filled" name='name' value={form.name} onChange={handleChangeForm}/>
-            <TextField id="standard-basic" label="Mô tả" variant="filled" name='description' value={form.description} onChange={handleChangeForm}/>
+              <TextField id="standard-basic" label="Intent" variant="filled" name='name' value={form.name} onChange={handleChangeForm}/>
+              <TextField id="standard-basic" label="Mô tả" variant="filled" name='description' value={form.description} onChange={handleChangeForm}/>
 
-            <br/>
-            <br/>
+              <br/>
+              <br/>
 
-            <Button color="success" variant='outlined' className='mt-10' onClick={(e) => {handleSubmit()}}>
-                {id ? "Cập nhật" : "Thêm"}
-            </Button>
-        </Box>
-    </>
+              <Button color="success" variant='outlined' className='mt-10' onClick={(e) => {handleSubmit()}}>
+                  {id ? "Cập nhật" : "Thêm"}
+              </Button>
+          </Box>
+      </>
 
     </Modal>
   );

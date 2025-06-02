@@ -17,11 +17,12 @@ import {
   Button 
 } from '@mui/material';
 
-import { Delete, Edit, ExpandMore, PostAdd, RestartAlt, Save } from '@mui/icons-material';
+import { Delete, Edit, PostAdd, RestartAlt, Save } from '@mui/icons-material';
 import {get, post, put, del} from '../lib/api';
 import { IntentExample } from '../schemas/IntentExample';
 import { Intent } from '../schemas/Intent';
 import {EntityExample} from "../schemas/EntityExample"
+import IntentExampleItem from './IntentExamplesItem';
 
 export default function NestedModal({intent_id, intent_name, handleClose}) {
 
@@ -117,40 +118,6 @@ export default function NestedModal({intent_id, intent_name, handleClose}) {
       }))
     }
 
-    const replaceWithEntity = (text: string, entities: EntityExample[]) => {
-      const parts: React.ReactNode[] = [];
-      let lastIndex = 0;
-
-      // Sắp xếp các entity theo vị trí bắt đầu
-      const sortedEntities = [...entities].sort((a, b) => a.char_start - b.char_start);
-
-      sortedEntities.forEach((entity, index) => {
-        const start = entity.char_start;
-        const end = entity.char_end + 1; // +1 vì substring không bao gồm end
-        const entityText = text.slice(start, end);
-        const { entity_name, value } = entity;
-
-        if (lastIndex < start) {
-          parts.push(text.slice(lastIndex, start));
-        }
-        
-        const replacement = (
-          <Button>
-            [{entityText}]
-          </Button>
-        );
-
-        parts.push(replacement);
-        lastIndex = end;
-      });
-      
-      if (lastIndex < text.length) {
-        parts.push(text.slice(lastIndex));
-      }
-
-      return <>{parts}</>;
-  }
-
   return (
     <Modal
         open={intent_id && intent_name}
@@ -179,7 +146,14 @@ export default function NestedModal({intent_id, intent_name, handleClose}) {
             {examples.map((example, index) => (
               <TableRow key={example.id}>
                 <TableCell>{index + 1}</TableCell>
-                <TableCell>{replaceWithEntity(example.example, example.entities)}</TableCell>
+                <TableCell>
+                  <IntentExampleItem
+                    example_id={example.id}
+                    text={example.example}
+                    entityExamples={example.entities}
+                    loadExamples = {loadExamples}
+                  />
+                </TableCell>
                 <TableCell>{example.description}</TableCell>
                 <TableCell align="center">
 

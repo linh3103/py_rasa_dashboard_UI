@@ -7,4 +7,4 @@ export type IntentExample = {
   example: string
   description?: string
   entities: [EntityExample]
-};
+}
